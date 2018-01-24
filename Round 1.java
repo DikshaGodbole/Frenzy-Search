@@ -180,7 +180,7 @@ class Final
 		"51)The Titanic was built in which city ?", 
 
 		
-		"52)What did  Frank Whittle invent?",
+		"52)What did  Frank Whittle invent and where?",
 		
 
 		"53)Who invented Bicycle?",
