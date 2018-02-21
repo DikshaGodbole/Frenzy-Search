@@ -1,17 +1,20 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.event.*;
 import java.awt.*;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.*;
 import java.util.regex.*;
-class Round2
+
+class Round2A
 {	
-	//public int qno=0;
-	int total=50;
+	int total=101;
 	int qn=1;
+	
+	//Frame, Label, TextArea, Button and String declaration
 	JFrame JF1,JF2;
-	JLabel JL1,JL2,timecounter,img;
+	JLabel JL1,JL2,timecounter,img,img2,area,area1,area2,area3,area4,area5;
 	JTextArea JTA1;
 	JButton JB1,JB2,JB3,start;
 	int TimeLimit=1;
@@ -20,263 +23,274 @@ class Round2
 	String[] splitted=new String[50];
 	String answer_low_case, split_low_case, temp,temp2,temp3,newtemp;
 	public int flag=0,count=0,ans,score=0;
-	public String name;
-	int ar[]=new int[30];
+	public String name="notapplicable";
+	int ar[]=new int[31];
 	int i;
-
+	int rank[]=new int[30];
 	String qw="";
 	String ansr;	
 	public int quesNo=1;
-	//public int count=0;
-	static String []question =new String[]{"",
-		"1) Who assisted in making first computer mouse ?",
-
-		
-		"2)OS Version of iTV",
-
-		
-		"3)who suggested to built the first steam-powered vehicle", 
-	 
-
-		"4)what is used for making an experimental model of an electric circuit.?",
 	
-				
-		"5)The smell of rain is due to-------------",
- 
-
-		"6)what was the First type of steam engine for separate condenser?",
-
-
-		"7)What is used to treat malaria which Willam Harvey demonstrated ?",
-
-
-		"8).which considered by most researchers to be the first successful microcomputer ?",
-
-
-		"9)Initial general name of apple's logo ?",
-
-
-		"10)Tcp/ip was adopted as what standard in 1980?",
-
-		
-		"11)what is the role C3S in cement",
-		
-		"12)Both indoor and outdoor heat pump units contain moving mechanical components which produce----------",
-		
-
-		"13)base on which type of design Marcel Bich introduce  ballpaint pen in american marketplace",
-		
-
-		"14)what is the cost of first eyephone?? (not iPhone)",
-			
-
-		"15)which technology is used by keyboard to send electronic impulses to computer",
-		
-
-		"16)what did cooper co founded in 1983",
-		
-
-		"17)who proposed CableCARD replacement",
-
-
-		"18)which heat pumps operate on mechanical energy",
-
-
-		"19)the granular noice is reduce by",
-		
-		
-		"20)Who is the Best Goalkeeper in 2010 FIFA World Cup?",
-		
-		
-		"21)Give name of Football club of a player who is winner of Ballon D'Or  award in 1970.",
-		
-		
-		"22)Name of second Marathi movie nominated for Oscar?",
-		
-				
-		"23)Who is the writer of novel 'Amruta'?",
-			
-		
-		"24)Where the first Indian bollywood movie is release?",
-		
-		
-		"25)According to Iamblichus in The life of Pythagoras, translated by -----------",
-		
-
-		"26)The animal that can change color and take shapes of other animals is ______",
-		
-
-		"27)India's president who took only 50% of his salary is ______",
-		
-
-		"28)What is the total number of words in english language that end with '-ous'?",
-		
-
-		"29)On December 17,1903,Wright Brothers made a record lasting flight,this record flight lasted for how many seconds?",
-		
-				
-		"30) Who first produced playing cards (hanafuda) ?" 
-				
-		};
+	// Questions 
 	
+	static String []question =new String[] {"No of innings Rahul Dravid played in test?",
+"1)Bubble power works under the principle of sonofusion , which is technically known as:__ __ ___ ___ ",
+"2)What is the cost of first eyephone?? (not iPhone)(Only Number)",
+"3)United States deployed an experimental e-bomb on _____(dd/mm/yyyy)",
+"4)OS Version of iTV : ",
+"5)Initial general name of Apple's logo ?",
+"6)Who assisted in making the first computer mouse ?",
+"7)What is the input device used to track the emotions of a user by a simple touch on it?",
+"8)James Gosling team for developing Java (sun Microsystem) was known as? ",
+"9)What is the command to print data on the webpage?",
+"10)Sessions are stored on the ----, and ----- are stored on the user's computers in text file format",
+"11)If a computer provides database services to other, then it will be known as ?",
+"12)Verification is process of ?",
+"13)In hub polling, also referred to as token polling, each element polls the next element in some _______ sequence",
+"14)Snapdragon 801 has the highest bandwidth of ______GB/s",
+"15)Andiod is licensed under which licensing license?",
+"16)Error detection at the data link level is achieved by___",
+"17)Unmodulated signal coming from a transmitter is know as?",
+"18) What was previous job of the director of museum of failure?",
+
+"19) Which firm invested 3 million dollars in the company zip2?",
+
+"20) Of which comapny's pc was Mark Zuckerberg's first pc?", 
+
+"21) What did Mark Zuckerberg named his first messenger software?",
+
+"22)From whom did Michael Sayman got the idea to create 4Snaps app?",
+
+"23)For how many years did Nikola Tesla lived in New York?(Only Number)",
+
+"24)Under what name the founder of wiki leaks started hacking?",
+
+"25)What name for linux had inventor of linux considered before linux?",
+
+"26)From which books did author of Game of Thrones got inspiration to write Game of Thrones?",
+"27)When did the word bicycle apeared?(yyyy)",
+"28)Domain registration was free until when? Use (dd/mm/yyyy) format",
+"29)How to create a new element node in XML ?",
+				
+};
+static String [] Answer = new String[]{	"286",
 	
-	static String []Answer =new String[]{"",
-		//1
-		"Bill English",
+//1
+"acoustic inertial confinement fusion",
+//2
+"500",
+//3
+"24/03/2003",
+//4
+"OS X Tiger",
+//5
+"Rainbow logo",
+//6
+"Bill English",
+//7
+"Emotion mouse",
+//8
+"Green Team",
+//9
+"echo",
+//10
+"server cookies",
+//11
+"Database server",
+//12
+"Authentication",
+//13
+"Fixed",
+//14
+"14.9",
+//15
+"Apache MIT",
+//16
+"Cyclic Redundancy Code",
+//17
+"Baseband signal",
+//18
+"Clinical psychologist",
 
-		//2
-		"OS X Tiger",
-	
-		//3 
-		"Ferdinand Verbiest", 
+//19
+"Mohr Davidow ventures",
 
-		//4
-		"Breadboard",
-		
-		//5
-		"actinomycetes", 
+//20
+"Quantex",
 
-		//6
-		"Watt steam engine",
+//21
+"Zucknet",
 
-		//7
-		"Quinine",
+//22
+"sister",
 
-		//8
-		"Osborne 1",
+//23
+"60",
 
-		//9
-		"Rainbow logo",
+//24
+"Mendax",
 
-		//10
-		"U.S.  Department of Defense (DoD)",
-		
-		//11
-		"initial set and early strength",
+//25
+"Freax",
 
-		//12
-		"Noise",
-
-		//13
-		"Argentine designs",
-		
-		//14
-		"$ 500",	
-
-		//15
-		"VDT tehnology",
-
-		//16
-		"Cellular Business Systems , Inc. (CBSI)",
-
-		//17
-		"U.S Federal Communications Commission (FCC)",
-			
-		//18
-		"Compression",
-			
-
-		//19
-		"redusing the step size",
-		
-		//20
-		"Iker Casillas",
-
-		//21
-		"Bayern Munich",
-		
-		//22
-		"Harishchandra's Factory",
-		
-		//23
-		"Raghuveer Chaudhari",	
-		
-		//24
-		"Olympia Theatre , Grant Road",
-		
-		//25
-		"Thomas Taylor",
-
-		//26
-		"Mimic Octopus",
-
-		//27
-		"Dr Rajendra Prasad",
-
-		//28
-		"1201",
-
-		//29
-		"59",	
-		
-		//30 
-		"Nintendo"
+//26
+"Lord of the Rings",
+//27
+"1868",
+//28
+"14/09/1995",
+//29
+"createElement()"
 
 };
-	Round2()
+
+		
+	Round2A()
 	{
+	        // JFrame definition
 		JF1= new JFrame();
 		JF1.setBounds(0,0,1366,768);
 		JF1.setLayout(null);
 		JF1.setBounds(0,0,1366,778);
-		img=new JLabel(new ImageIcon("/home/priyanka/a.jpg"));
+		
+		
+		
+		img=new JLabel(new ImageIcon("hd2.jpg"));
 		img.setBounds(0,0,1366,778);
 		JF1.add(img);
 		img.setLayout(null);
-
 		
 		
-		JL1 = new JLabel("Frenzy Search");
+		img2=new JLabel(new ImageIcon("logo.png"));
+		img2.setBounds(1100,30,80,100);
+		JF1.add(img2);
+		img2.setLayout(null);
+		
+		// Rules definition
+		area = new JLabel("Round 2 rules : ");
+		area.setFont(new Font("Verdana ", Font.BOLD, 20));
+		area.setForeground(Color.white);
+		area.setBounds(50,100,1366,200);
+		
+		// Rule 1 
+		area1 = new JLabel("1. The time limit will be of 10 minutes.");
+		area1.setFont(new Font("Verdana ", Font.BOLD, 20));
+		area1.setForeground(Color.white);
+		area1.setBounds(50,140,1366,200);
+		
+		// Rule 2 
+		area2 = new JLabel("2. Copy pasting the question in the search engine is strictly prohibited.");
+		area2.setFont(new Font("Verdana ", Font.BOLD, 20));
+		area2.setForeground(Color.white);
+		area2.setBounds(50,165,1366,200);
+		
+		// Rule 3 
+		area3 = new JLabel("3. You can copy paste the answer into the text area from the search engine. ");
+		area3.setFont(new Font("Verdana ", Font.BOLD, 20));
+		area3.setForeground(Color.white);
+		area3.setBounds(50,190,1366,200);
+		
+		// Rule 4 
+                area4 = new JLabel("4. Participants should answer maximum questions within the given time only.");
+		area4.setFont(new Font("Verdana ", Font.BOLD, 20));
+		area4.setForeground(Color.white);
+		area4.setBounds(50,215,1366,200);
+		
+		// Rule 5 
+                area5 = new JLabel("5. After pressing exit call any volunteer to your station.");
+		area5.setFont(new Font("Verdana ", Font.BOLD, 20));
+		area5.setForeground(Color.white);
+		area5.setBounds(50,240,1366,200);
+		
+		// Pro-Googler Label 
+		JL1 = new JLabel("PRO-GOOGLER : ROUND 2");
+		JL1.setFont(new Font("Verdana ", Font.BOLD, 50));
 		JL1.setForeground(Color.white);
-		JL1.setFont(new Font("URW Chancery ", Font.BOLD+Font.ITALIC, 40));
-
-		JL2 = new JLabel("Welcome to Frenzy Search!!!!!!!!!!!!!");
-		JL2.setFont(new Font("Verdana", Font.ITALIC, 20));
+		JL1.setBounds(100,30,1000,50);
+		
+		// Questions label 
+		JL2 = new JLabel("");
+		JL2.setFont(new Font("Verdana", Font.BOLD, 20));
 		JL2.setForeground(Color.white);
-
+		JL2.setBounds(45,140,1366,160);
+		
+		// Time counter
 		timecounter=new JLabel();
-		timecounter.setFont(new Font("Courier New", Font.ITALIC+Font.BOLD,25));
-
-		//JL2.setText(question[1]);
-		System.out.println(question[1]);
-		//JB1 = new JButton("Previous");
+		timecounter.setFont(new Font("Courier New",Font.BOLD,20));
+		timecounter.setBounds(735,150,1366,400);
+		timecounter.setForeground(Color.white);
+		
+		// Next Button definition
 		JB2 = new JButton("Next");
+		JB2.setBounds(210,610,150,50);
+		JB2.addActionListener(new Action());
+		JB2.setVisible(false);
+		
+		// Exit Button definition
 		JB3 = new JButton("Exit");
-		start=new JButton("Start");
-		
-		JTA1 = new JTextArea();
-		
-		timecounter.setBounds(700,80,600,150);
-		JL1.setBounds(500,30,600,50);
-		JL2.setBounds(100,250,1200,25);
-
-	
-		JTA1.setBounds(100,300,700,200);
-
-		JTA1.setFont(new Font("Verdana", Font.ITALIC, 20));
-
-		start.setBounds(450,500,250,50);
-		start.addActionListener(new Action());
-		//JB1.setBounds(400,610,150,50);
-		//JB1.addActionListener(new Action());
-		JB2.setBounds(600,610,150,50);
-		//JB2.addActionListener(new Action());
-		JB3.setBounds(1100,610,100,50); 
+		JB3.setBounds(800,610,150,50); 
 		JB3.addActionListener(new Action());
 		
-		img.add(JL1);
-		img.add(JL2);
 		
-		//JF1.add(JTA1);
-
-		img.add(start);
-		//JF1.add(JB1);
-		//JF1.add(JB2);
-		img.add(JB3);
+		// Start Button definition 
+		start=new JButton("Start");
+		start.setBounds(450,610,250,50);
+		start.addActionListener(new Action());
 		
-		//JF1.setLayout(null);
-		JF1.setVisible(true);
+		
+		
+		
+		
+		
+		
+		// Border 
+		Border border = BorderFactory.createLineBorder(Color.gray,5);
+		
+		// Text Area for answers
+		JTA1 = new JTextArea();
+		JTA1.setBorder(border);
+		JTA1.setBounds(45,250,500, 200);
+		JTA1.setFont(new Font("Verdana",Font.BOLD,25));
+		
+		
+		// Adding everything on the background image		
+		img.add(JL1);                   // Progoogler
+		img.add(JL2);                   // Questions
+		img.add(area);                  // Rules
+		img.add(area1);
+		img.add(area2);
+		img.add(area3);
+		img.add(area4);
+		img.add(area5);
+		img.add(start);                 // Start Button
+		img.add(JB2);                   // Next Button 
+		img.add(JB3);                   // Exit Button
+		img.add(img2);
+		
+		
+		JF1.setVisible(true);           // Frame
+		
+		for(i=1; i<=29; i++)
+		{
+			rank[i]=i;
+		}
+		
+		
+		// Random function for generating random questions
+		Random rm = new Random();
+		int temp, ind1, ind2;
+		for(i=29; i>0; i--)
+		{
+			ind1= rm.nextInt(i);
+			//System.out.println("\n------------"+ind1+"\n-------------\n"); 
+			temp = rank[ind1];
+			rank[ind1] = rank[i];
+			rank[i] = temp;
+		}	
+		
 	}
+	
+	// Action listener class
 	public class Action implements ActionListener
 	{	
 
@@ -285,13 +299,24 @@ class Round2
 			try
 			{
 				String  event = ae.getActionCommand();
-				//String s=event.getLabel();
 				if(event.equals("Exit")) 
 				{	
 
-					savedata();
-					
-					//clearData();
+                    int confirmed = JOptionPane.showConfirmDialog(null,"Are you sure you want to exit the program?", "Exit   Program",JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) 
+            {   
+                savedata();
+                System.exit(0);
+                 
+            }
+            else
+            {
+               return;
+            }
+    
+					                    // Save the data and return score 
+					 
 					
 				}
 				else if(event.equals("Start"))
@@ -299,107 +324,65 @@ class Round2
 					
 					try 
    					{	
-   						Object studentname = JOptionPane.showInputDialog(JF1, "Enter your Full Name without spaces :");
+   					    Object studentname = JOptionPane.showInputDialog(JF1, "Enter your Full Name without spaces :");
 						name=studentname.toString();
-						//studentname = JOptionPane.showInputDialog("Enter your name: ");
 						int aq=name.length();
 						if(aq < 1) 
 						{
-							name = "Anonymous";
-						}
+							name = "Anonymous";                     // Test case for name. If no name entered 
+						}                                               // Anonymous is taken. 
 						else 
 						{
 							name = name;
 						}
 
  						Class.forName("com.mysql.jdbc.Driver");    // check for feasibility
-			   			Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Round_2","root","root");
-	       				System.out.println("Connection established...");
+			   			Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Frenzy2","root","root");
+                                System.out.println ("Database connection established"); 
 	            		Statement st = cn.createStatement();
-	            		//con();
-	            		//String a="CREATE TABLE IF EXISTS '"+name+"' (Sr_No int,Que varchar(250),Ans varchar(250),urAns varchar(300),Output int)";
 	            		String a="CREATE TABLE IF NOT EXISTS  ";
 	            		a = a.concat(name);
-	            		a =	a.concat(" (qno int, answer varchar(250))");
-	            		
-	            		System.out.println(a);
-						//String DB ="CREATE TABLE IF NOT EXISTS '"+name+"' (Sr_No int,QN varchar(250),AN varchar(250),YA varchar(300),Output int)"; 
+	            		a =	a.concat(" (qno int, answer varchar(250))");		
                 		st.executeUpdate(a);
-                		String s1="insert into ";
-                		s1= s1.concat(name);
-                		s1= s1.concat("(qno) values(1)");
-                		System.out.println("Start button Clicked...\n"+s1);
-                		st.executeUpdate(s1);
                 		
-                	}
+                	}      // Try block ends here 
+                	
                 	catch(NullPointerException e)
 					{ 	
 						System.exit(0); 
-					}
+					}   // Catch block ends here 
 					
-					JB2.addActionListener(new Action());
-					img.add(JB2);
-					JB2.setVisible(true);
+					//JB2.addActionListener(new Action());
+					//img.add(JB2);
+					  
+   					
 					
 					
-					//JL2.setText("Please click on next button");
-					start.setVisible(false);
+					JB2.setVisible(true);           // Next button visible
+					area.setVisible(false);         // Rules invisible
+					area1.setVisible(false);
+					area2.setVisible(false);
+					area3.setVisible(false);
+					area4.setVisible(false);	
+					area5.setVisible(false);
+					start.setVisible(false);        // Start button invisible
 					strt=true;
-					seconds=60;
-
-					img.add(JTA1);
+					seconds=59;
+					minutes=9;
+					img.add(JTA1);                  // Text area for answers visible
 					if(TimeLimit >0)new Timer();
-					img.add(timecounter);
-
-					JL2.setText(question[quesNo]);
-					System.out.println(strt);
-							//ansr=JTA1.getText();
-
+					img.add(timecounter);           // Timer visible
+					JL2.setText(question[rank[quesNo]]);    // Questions displayed
 					
-				}//stsrt end
-					//if(strt)
-					//{	
-						
-						//JF1.add(JTA1);
-						//JF1.add(JB1);
-						//JF1.add(JB2);
-
-						
-						/*if (event.equals("Previous")) 
-						{	
-							PrevButton();
-							 if (quesNo!=0) 
-							{
-								quesNo--;
-			
-							}
-							else if(quesNo==0)
-							{
-								quesNo=1;
-								JL2.setText(question[quesNo]);
-							}
-							
-							JL2.setText(question[quesNo]);
-		
-
-							
-
+				}//start end
 					
-						}
-						*/if(strt)
+						if(strt)
 						{
 							if (event.equals("Next")) 
 							{	
-								seconds=0;
 								NextButton();
-								
-							
 							}
-					}
-
-					
-
-
+					        }
 				
 			}//outer try end
 			catch(Exception e)
@@ -407,280 +390,203 @@ class Round2
 				System.out.println(e);
 			}	
 		}//actionperformed close
+		
+
+  
+
 
 		public void NextButton()
 		{
 			
 	    	ansr=JTA1.getText();
-	    	System.out.println("Array seconds at "+i+":"+ar[i]);
 	    	i++;
 	        
 	        if(ansr!=null)
 	       	{
 	        	try
 	        	{	
-
-	    			Class.forName("com.mysql.jdbc.Driver");    // check for feasibility
-					Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Round_2","root","root");
-	        		System.out.println("Connection established...");
-	            	Statement st = cn.createStatement();
-	            	//int QN=quesNo;
-	            	System.out.println("Question "+quesNo);
-	            	System.out.println("Next Button Clicked...");
-
+	        		
+	        	Class.forName("com.mysql.jdbc.Driver");    // check for feasibility
+			Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Frenzy2","root","root");
+		        Statement st = cn.createStatement();
+                	
+                	// Insert the answers in the table with name as the name entered by the participant
+                	String s1="insert into ";
+                	s1= s1.concat(name);
+                	s1= s1.concat(" values('"+rank[quesNo]+"','"+ansr+"')");
+                	st.executeUpdate(s1);
+                	
+                	// Logic to return answers from the database according to the question number
 	            	String check1= "select * from ";
 	            	check1=check1.concat(name);
-	            	check1=check1.concat(" where qno='"+quesNo+"'");
-	            	System.out.println(check1);
-					ResultSet r1=st.executeQuery(check1);
+	            	check1=check1.concat(" where qno='"+rank[quesNo]+"'");
+			ResultSet r1=st.executeQuery(check1);
 					
 					while(r1.next())
 					{
-						qw= r1.getString(2);
-						System.out.println(qw);		
+						qw = r1.getString(2);		
 					}
 					
-					
-					if(qw ==null) 
+					JTA1.setText("");
+					if(qw == null) 
 					{
-					 	//ansr=JTA1.getText();
-						System.out.println(qw);						
 				   		String temp="insert into ";
 				   		temp=temp.concat(name);
-				   		temp=temp.concat(" values('"+quesNo+"','"+ansr+"')");
-				   		System.out.println(temp);
-	            		st.executeUpdate(temp);
-	            		JTA1.setText("");
-	            	}
+				   		temp=temp.concat(" values('"+rank[quesNo]+"','"+ansr+"')");
+	            		                st.executeUpdate(temp);
+	            		                JTA1.setText("");
+	            	                }
 
 					else
 					{
-
-						//String ab1=JTA1.getText();
 						String updat="update ";
 						updat=updat.concat(name);
-						updat=updat.concat(" set answer='"+ansr+"'where qno='"+quesNo+"'");
-						System.out.println(updat);
+						updat=updat.concat(" set answer='"+ansr+"'where qno='"+rank[quesNo]+"'");
 						st.executeUpdate(updat);
-						JTA1.setText(qw);
+						JTA1.setText("");
 
 					}
 					check();
-
-
 					quesNo++;	
-					if (quesNo<=total) 
-					{	
-						
-
-						JL2.setText(question[quesNo]);
-						System.out.println(strt);
-						System.out.println("Question number:"+quesNo);
-	
+					if (quesNo<total)                               // Check if total questions attempted is less
+					{	                                        // than the total questions and display new q.
+						JL2.setText(question[rank[quesNo]]);
+					
 					}
 
 					else
 					{
-						JL2.setText(question[1]);
+						throw new Exception();
 					}
-
-					qn=qn+1;
-					System.out.println("value of qn"+qn);
-					seconds=60;
 
 									}
 					
 	        	catch(SQLException e)
 	        	{
-					JOptionPane.showMessageDialog(null, e);                    
+					JOptionPane.showMessageDialog(null, e);         // Display SQL Exceptions              
 	        	    
 	        	} 
 	        	catch (ClassNotFoundException ex) 
 	        	{
-	        	     Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
+	        	     Logger.getLogger(Round2A.class.getName()).log(Level.SEVERE, null, ex);
+	    		}
+	    		catch (Exception e) 
+	    		{
+	    			        JTA1.setVisible(false);
+					JL2.setVisible(false);
+					JB2.setVisible(false);
+					
+					// Exit Label 
+					JLabel Exit=new JLabel("Game over please click on EXIT.....");
+					timecounter.setVisible(false);	
+					Exit.setBounds(45,300,500,400);
+					Exit.setFont(new Font("Verdana",Font.BOLD,25));
+					Exit.setForeground(Color.white);
+					img.add(Exit);
 	    		}
 			}
-		}//next button end
+		} //next button end
+		
 
-		public void check()
+                
+                // Function to calculate the score
+                
+		public void check()                     
 		{
-			System.out.println("Answer[quesNo]::"+Answer[quesNo]+"\n QN::"+(quesNo));
-			
-			System.out.println("Answer ka question"+(quesNo));
-			splitted = Answer[(quesNo)].split("\\s+");
+			splitted = Answer[rank[quesNo]].split("\\s+");
 			answer_low_case=ansr.toLowerCase();
-			System.out.println("\nUser Input::"+answer_low_case);
-			for(int i=0; i < splitted.length ; i++)
-			{	
-				System.out.println("Splitted array::"+splitted[i]);
-			}
-			
 				for(int index=0; index < splitted.length ; index++)
 				{	
 					temp = splitted[index];
-
-						
-
-					if(temp.startsWith("(") && temp.endsWith(")"))
-					{
-	
-							temp2=temp.substring(1);
-							temp3=temp2.substring(0,temp2.length()-1);
-
-							if(answer_low_case.contains(temp3.toLowerCase()))
-							{
-								ans=1;
-								flag = flag | ans;
-								System.out.println("FLAG = "+flag);
-							}
-	
-					}	
-			
-					else if(temp.startsWith("("))
-					{
-	
-							temp2=temp.substring(1);
-
-
-							if(answer_low_case.contains(temp2.toLowerCase()))
-							{
-								ans=1;
-								flag = flag | ans;
-								System.out.println("FLAG = "+flag);
-							}			
-	
-					}
-					else if(temp.endsWith(")"))
-					{
-	
-							temp2=temp.substring(0,temp.length()-1);
-
-
-							if(answer_low_case.contains(temp2.toLowerCase()))
-							{
-								ans=1;
-								flag = flag | ans;
-								System.out.println("FLAG = "+flag);
-							}
-	
-					}
-
-			
-					else if(answer_low_case.contains(temp.toLowerCase()))
+					 if(answer_low_case.contains(temp.toLowerCase()))
 					{
 							ans=1;
 							flag = flag | ans;
-							System.out.println("FLAG = "+flag);
 					}
-
 			}
 
 			if(flag==1)
-			{
+			{       
+			        
 				score++;
 				flag=0;
 			}			
-			System.out.println("\nSCORE:"+score+"\nEND");
-
 		}//check end
 		
-
-        
+		
+		// Function for the timer
 		public class Timer extends Thread implements Runnable
-        {
+                {
 			public Timer()
 			{
 				new Thread(this).start();
 			}
 
-    	public void run() 
-    	{
-			while(strt)
-			{
-    	        try 
+    	        public void run() 
     	        {
-    	           Thread.sleep(1000);
-    	           seconds--;
-    	           ar[i]=(60-seconds);
+		   while(strt)
+		   {
+    	             try 
+    	             {
+    	                Thread.sleep(1000);
+    	                seconds--;
 					if(seconds==0)
 					{
-
-    	                NextButton();
-    	                seconds=60;
-					}
-					timecounter.setText("    Time Counter: "+seconds+" secs ");
-
-					/*if(minutes==TimeLimit)
+						minutes--;
+    	                seconds=59;
+	 				}
+					if(minutes<0 || seconds==0)
 					{
-						strt=false;
-						JF1.remove(timecounter);
-						NextButton();
-						//timecounter.setText("Time Over!!!!!!!!!!!! Please press Exit button");
-
-					}*/
-					if(qn==30)
-					{
-						
-						JTA1.setVisible(false);
-						JL2.setVisible(false);
-						JB2.setVisible(false);
-						timecounter.setText("Game over please click on EXIT.....");
-						//savedata();
-
+						savedata();
 					}
+					timecounter.setText(" "+minutes+" minutes " +seconds+" seconds");
 			    }
    	         catch(InterruptedException ex)  { System.out.print(ex); }
 			}
    	 	}
 	}
+	
+
 	public void savedata()
 {	
-
 	qn++;
-	System.out.println("\n\nThe value of qn"+qn);
+	
 	int sum=0;
 
-	for(int j=0;j<30;j++)
-	{
-		
-		System.out.println("\nSeconds:"+ar[j]);
-
-	}
-
-	for(int j=0;j<30;j++)
+	/*for(int j=0;j<30;j++)
 	{
 		sum=sum+ar[j];
 
+
 	}
 
-	String a=Integer.toString(sum);
-	System.out.println("\n value of sum:"+a);
-
-	System.out.println("You have solved questions within time: "+sum+"seconds");
-
+	String a=Integer.toString(sum);*/
 	try
-	       		{	
-
-	    			Class.forName("com.mysql.jdbc.Driver");    // check for feasibility
-					Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Round_2","root","root");
-	        		System.out.println("Connection established...");
+	{	
+			if(name.equals("notapplicable"))
+                        {
+                           System.exit(0);
+                        }
+                        else
+                        {
+	    		Class.forName("com.mysql.jdbc.Driver");    // check for feasibility
+			Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Frenzy2","root","root");
 	            	Statement st = cn.createStatement();
-	            	String s1="insert into ";
-	            	s1=s1.concat(name);
-	            	s1=s1.concat(" values('"+qn+"','"+a+"')");
-	            	System.out.println("\n\nsave question:: "+s1);
-	            	st.executeUpdate(s1);
-	            	
-	            	qn++;
-
+	            	//String s1="insert into ";
+	            	//s1=s1.concat(name);
+	                //s1=s1.concat(" values('"+qn+"','"+a+"')");
+	                //st.executeUpdate(s1);
+	                //qn++;
+	                
+	                // Store the score in the database
+	                
 	            	String s2="insert into ";
 	            	s2=s2.concat(name);
 	            	s2=s2.concat(" values('"+qn+"','"+score+"')");
-	            	System.out.println("\n\nsave question:: "+s2);
 	            	st.executeUpdate(s2);
-
-
-	            	//int QN=quesNo;
+			JOptionPane.showMessageDialog(JF1,"YOUR SCORE IS : "+score+"\n THANKYOU FOR PLAYING");
+			System.exit(0);
+			}
 	            }
 	            catch(SQLException e)
 	        	{
@@ -689,23 +595,16 @@ class Round2
 	        	} 
 	        	catch (ClassNotFoundException ex) 
 	        	{
-	        	     Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
+	        	     Logger.getLogger(Round2A.class.getName()).log(Level.SEVERE, null, ex);
 	    		}
-	    		System.out.println("\n\nThe value of qn"+qn);
-
-
 	JF1.dispose();
-	System.exit(0);
+	//System.exit(0);
 }
-	
-
 	
 }
 	public static void main(String args[])
 	{	
-		Round2 F = new Round2();
+		Round2A F = new Round2A();
 	}
 
 }
-
-
